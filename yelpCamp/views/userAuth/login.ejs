@@ -1,0 +1,15 @@
+<% layout('/layout/boilerplate') -%>
+    <div style="padding: 50px 25%;">
+        <h1>Login</h1>
+        <form action="/login" method="post" novalidate class="Validate-karo">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="username" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-success">Login</button>
+        </form>
+    </div>

@@ -1,0 +1,29 @@
+<% layout('/layout/boilerplate') -%>
+
+    <div class="mx-5 my-5">
+        <h1 class="mt-5">New Campground</h1>
+        <form action="/campgrounds" method="post" novalidate class="Validate-karo">
+            <div class="mb-3">
+                <label for="title">Title</label>
+                <input class="form-control" type="text" id='title' name="title" style="width: 400px;" required>
+            </div>
+            <div class="mb-3">
+                <label for="location">Location</label>
+                <input class="form-control" type="text" id='location' name="location" style="width: 400px;" required>
+            </div>
+            <div class="mb-3">
+                <label for="img">Img URL</label>
+                <input class="form-control" type="text" id='img' name="img" style="width: 400px;" required>
+            </div>
+            <div class="mb-3 input-group" style="width: 400px;">
+                <span class="input-group-text">&#8377(INR)</span>
+                <input class="form-control" type="number" min='0' step="0.01" name="price" required>
+            </div>
+            <div class="form-floating">
+                <textarea class="form-control" id="description" style="height: 100px; width: 400px;" name="description"
+                    required></textarea>
+                <label for="description">Describe your amazing campsite</label>
+            </div>
+            <button class="mt-4 btn btn-outline-secondary" style="width: 200px;">Add Campground</button>
+        </form>
+    </div>
