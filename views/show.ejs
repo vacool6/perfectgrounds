@@ -1,0 +1,174 @@
+<% layout('/layout/boilerplate') -%>
+
+    <!-- <h1>
+        <%=camp.title%>
+    </h1>
+    <br>
+    <img class="img-fluid" style="height: 700px;" src="<%=camp.img%>" alt="campsite">
+    <br>
+    <hr>
+    <h3>
+        <%=camp.location%>
+    </h3>
+    <h5>
+        <%=camp.description%>
+    </h5>
+    <h2>&#8377
+        <%=camp.price%>
+
+    </h2>
+    <p><a class='btn btn-warning stretched-link mt-3' href="/campgrounds/<%=camp._id%>/edit" style="width: 200px;">Edit
+            Campsite??</a></p>
+    <form action="/campgrounds/<%=camp.id%>?_method=DELETE" method="post">
+        <button class="mt-2 mb-5 btn btn-danger" style="width: 200px;">Delete Campsite??</button>
+    </form> -->
+
+    <!-- <div>
+        <p class="display-4">Leave a review</p>
+        <form action="/campgrounds/<%=camp._id%>/review" method="post" novalidate class="Validate-karo">
+            <div>
+                <label for="rating" class="form-label "><b>Rating</b></label>
+                <br>
+                <input type="range" class="form-range" min="1" max="5" step="1" id="rating" name="rating"
+                    style="width: 200px;">
+            </div>
+            <div>
+                <label for="comment"><b>Comments</b></label>
+                <textarea class="form-control" id="comment" style="height: 100px; width: 400px;" name="comment"
+                    required></textarea>
+            </div>
+            <button class="my-5 mt-2 btn btn-outline-secondary">Submit</button>
+        </form>
+    </div>
+    <div>
+        <ul>
+            <%for(let review of camp.reviews){%>
+                <p><i>Rating: <%=review.rating%></i>
+
+                </p>
+                <p>
+                    <i>Comments: <%=review.comment%></i>
+                </p>
+                <%}%>
+        </ul>
+    </div> -->
+    <div class="row mx-5 my-5 ">
+        <div class="col-sm-6">
+            <div class="card" style="width: 100%; background-color:wheat;">
+                <img src="<%=camp.img%>" class="card-img-top img-fluid" alt="...">
+                <div class="card-body ">
+                    <h5 class="card-title" style="font-size: 70px ;">
+                        <b>
+                            <%=camp.title%>
+                                <figure class="text-center">
+                                    <blockquote class="blockquote">
+                                        <i>
+                                            Submitted by -<%=camp.author.username%>
+                                        </i>
+                                    </blockquote>
+                                </figure>
+                        </b>
+                    </h5>
+                    <p class="card-text" style="font-size: 20px ;">
+                        <%=camp.description%>
+                    </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" style="font-size: 20px ; background-color:wheat">Location: <br>
+                        <b>
+                            <%=camp.location%>
+                        </b>
+                    </li>
+                    <li class="list-group-item" style="font-size: 20px ;background-color:wheat">Price: <br> &#8377
+                        <b>
+                            <%=camp.price%>/night
+                        </b>
+                    </li>
+                    <li class="list-group-item" style="font-size: 20px ;background-color:rgb(246, 163, 8);">PREMIUM
+                        Location &#9829
+                        &#9829 &#9829 &#9829
+                        &#9829</li>
+                    <%if(currentUser && camp.author.equals(currentUser._id)){%>
+                        <li class="list-group-item">
+                            <a class='btn btn-secondary stretched-link my-2 mr-3' href="/campgrounds/<%=camp._id%>/edit"
+                                style="width: 200px;">Edit
+                                Campsite??</a>
+                        </li>
+                        <li class="list-group-item">
+                            <form action="/campgrounds/<%=camp.id%>?_method=DELETE" method="post">
+                                <button class=" mb-5 btn btn-danger" style="width: 200px;">Delete
+                                    Campsite??</button>
+                            </form>
+                        </li>
+
+                        <%}%>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <%if(currentUser){%>
+                <div class="mx-5 ">
+                    <p class="display-4 ">Leave a review</p>
+                    <form action="/campgrounds/<%=camp._id%>/review" method="post" novalidate class="Validate-karo">
+                        <div>
+                            <label for="rating" class="form-label"><b>Rating</b> (if not selected default rating is
+                                3)</label>
+                            <br>
+                            <input type="range" class="form-range" min="1" max="5" step="1" id="rating" name="rating"
+                                style="width: 200px;">
+                        </div>
+                        <div>
+                            <label for="comment"><b>Comments</b> (We would love to knoe your view)</label>
+                            <textarea class="form-control" id="comment" style="height: 100px; width: 400px;"
+                                name="comment" required></textarea>
+                        </div>
+                        <button class="my-5 mt-2 btn btn-outline-secondary">Submit</button>
+                    </form>
+                </div>
+                <%}%>
+                    <div class="my-5 mx-5">
+                        <h1 class="my-5 ">Ratings & Comments</h1>
+                        <ul>
+                            <%for(let review of camp.reviews){%>
+                                <div class="card mb-3" style="width: 30rem;">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item" style="font-size: 15px;">
+                                            <b>Rating :
+                                                <%=review.rating%>
+                                            </b> <br>
+
+                                            <%=review.comment%>
+                                                <%if(currentUser && currentUser._id.equals(review.author)){%>
+                                                    <form style="text-align: end;"
+                                                        action="/campgrounds/<%=camp._id%>/review/<%=review._id%>?_method=DELETE"
+                                                        method="post">
+                                                        <button
+                                                            class=" mt-1 px-3 rounded-circle btn btn-outline-danger">X</button>
+                                                    </form>
+                                                    <%}%>
+                                        </li>
+                                    </ul>
+
+                                </div>
+
+
+                                <!-- <p><i>Rating: <%=review.rating%></i>
+
+                        </p>
+                        <p>
+                            <i>Comments: <%=review.comment%></i>
+                        </p> -->
+                                <%}%>
+                        </ul>
+                    </div>
+        </div>
+    </div>
+
+
+
+
+    <br>
+    <br>
+    <br>
+    <br><br><br><br>

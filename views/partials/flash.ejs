@@ -1,0 +1,25 @@
+<%if(success && success.length){%>
+
+    <center>
+        <div class="mt-5 alert alert-success alert-dismissible fade show" role="alert" style="width: 50%;">
+            <strong>
+                <%=success%>
+            </strong>
+
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </center>
+    <%}%>
+
+        <%if(error && error.length){%>
+
+            <center>
+                <div class="mt-5 alert alert-danger alert-dismissible fade show" role="alert" style="width: 50%;">
+                    <strong>
+                        <%=error%>
+                    </strong>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </center>
+            <%}%>
