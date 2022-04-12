@@ -56,7 +56,7 @@ app.use((req, res, next) => {
 
 const isLoggedin = ((req, res, next) => {
     if (!req.isAuthenticated()) {
-        req.flash('error', "You must be logged in first!")
+        req.flash('Error', "You must be logged in first!")
         return res.redirect('/login')
     }
     next();
@@ -66,7 +66,7 @@ const isAuthor = async (req, res, next) => {
     const { id } = req.params;
     const campground = await Campground.findById(id);
     if (!campground.author.equals(req.user._id)) { //Other way around wont work
-        req.flash('error', 'You do not have permission to do that!');
+        req.flash('Error', 'You do not have permission to do that!');
         return res.redirect(`/campgrounds/${id}`);
     }
     next();
@@ -153,7 +153,6 @@ app.post('/campgrounds', isLoggedin, async (req, res, next) => {
 app.get('/campgrounds/:id', async (req, res, next) => {
     try {
         const camp = await Campground.findById(req.params.id).populate('reviews').populate('author');
-        // res.render('./errors/pagenotFound');
         res.render('show', { camp });
     } catch (error) {
         next(error);
