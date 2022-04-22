@@ -97,7 +97,7 @@ app.post('/register', async (req, res) => {
             const newUser = await User.register(user, password);
             req.login(newUser, err => {
                 if (err) return next(err);
-                req.flash('success', 'Welcome!!! ❤ ❤ ❤')
+                req.flash('success', 'Welcome!!! ❤')
                 res.redirect('/campgrounds')
             })
         } catch (err) {
