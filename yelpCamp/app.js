@@ -123,6 +123,7 @@ app.get('/logout', (req, res) => {
     res.redirect('/campgrounds')
 })
 
+//Routes
 app.get('/', (req, res) => res.render("home"));
 
 app.get('/campgrounds', async (req, res, next) => {
