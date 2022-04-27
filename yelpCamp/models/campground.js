@@ -12,11 +12,11 @@ const CampgroundSchema = new Schema({
         required: true,
         min: 0
     },
-    img: {
+    description: {
         type: String,
         required: true
     },
-    description: {
+        img: {
         type: String,
         required: true
     },
