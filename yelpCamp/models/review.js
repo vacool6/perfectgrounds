@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const reviedSchema = new Schema({
+const reviewSchema = new Schema({
     comment: {
         type: String,
         required: true
@@ -17,4 +17,4 @@ const reviedSchema = new Schema({
     }
 })
 
-module.exports = mongoose.model('Review', reviedSchema);
+module.exports = mongoose.model('Review', reviewSchema);
